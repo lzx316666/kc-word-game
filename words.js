@@ -1,0 +1,28 @@
+// 단어 데이터 / 单词数据
+// ko: 한국어, zh: 中文, py: 拼音
+const WORDS = [
+  { ko: "안녕하세요", zh: "你好", py: "nǐ hǎo" },
+  { ko: "감사합니다", zh: "谢谢", py: "xiè xie" },
+  { ko: "미안합니다", zh: "对不起", py: "duì bu qǐ" },
+  { ko: "친구", zh: "朋友", py: "péng you" },
+  { ko: "가족", zh: "家人", py: "jiā rén" },
+  { ko: "학교", zh: "学校", py: "xué xiào" },
+  { ko: "선생님", zh: "老师", py: "lǎo shī" },
+  { ko: "학생", zh: "学生", py: "xué sheng" },
+  { ko: "책", zh: "书", py: "shū" },
+  { ko: "컴퓨터", zh: "电脑", py: "diàn nǎo" },
+  { ko: "물", zh: "水", py: "shuǐ" },
+  { ko: "밥", zh: "饭", py: "fàn" },
+  { ko: "사과", zh: "苹果", py: "píng guǒ" },
+  { ko: "커피", zh: "咖啡", py: "kā fēi" },
+  { ko: "고양이", zh: "猫", py: "māo" },
+  { ko: "강아지", zh: "小狗", py: "xiǎo gǒu" },
+  { ko: "오늘", zh: "今天", py: "jīn tiān" },
+  { ko: "내일", zh: "明天", py: "míng tiān" },
+  { ko: "시간", zh: "时间", py: "shí jiān" },
+  { ko: "사랑", zh: "爱", py: "ài" },
+  { ko: "행복", zh: "幸福", py: "xìng fú" },
+  { ko: "바다", zh: "大海", py: "dà hǎi" },
+  { ko: "하늘", zh: "天空", py: "tiān kōng" },
+  { ko: "꽃", zh: "花", py: "huā" },
+];

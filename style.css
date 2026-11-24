@@ -1,0 +1,165 @@
+:root {
+  --bg: #f6f3ee;
+  --ink: #23262f;
+  --muted: #6b6f7b;
+  --panel: #ffffff;
+  --ko: #2f5bea;
+  --zh: #d6402f;
+  --ok: #1f9d55;
+  --ng: #d64545;
+  --radius: 14px;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: "Pretendard", "Noto Sans KR", "Noto Sans SC", "Microsoft YaHei", system-ui, sans-serif;
+  background: var(--bg);
+  color: var(--ink);
+}
+
+.top {
+  text-align: center;
+  padding: 32px 16px 8px;
+}
+.top h1 { margin: 0; line-height: 1.25; }
+.top h1 .ko { color: var(--ko); display: block; font-size: 2rem; }
+.top h1 .zh { color: var(--zh); display: block; font-size: 1.6rem; }
+.subtitle { color: var(--muted); margin: 8px 0 20px; }
+
+.tabs { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; }
+.tab {
+  border: 1px solid #d9d4cb;
+  background: var(--panel);
+  padding: 10px 16px;
+  border-radius: 999px;
+  cursor: pointer;
+  font-size: 0.95rem;
+}
+.tab.active { background: var(--ink); color: #fff; border-color: var(--ink); }
+
+main { max-width: 900px; margin: 0 auto; padding: 16px; }
+.view { display: none; }
+.view.active { display: block; }
+
+.panel {
+  background: var(--panel);
+  border-radius: var(--radius);
+  padding: 14px 18px;
+  margin-bottom: 12px;
+  box-shadow: 0 1px 3px rgba(0,0,0,.06);
+}
+.controls { display: flex; flex-wrap: wrap; gap: 12px; align-items: flex-end; }
+.controls label { display: flex; flex-direction: column; gap: 6px; font-size: .9rem; color: var(--muted); }
+.controls .grow { flex: 1; }
+select, input {
+  font: inherit;
+  padding: 8px 10px;
+  border: 1px solid #d9d4cb;
+  border-radius: 8px;
+  color: var(--ink);
+}
+.stats { display: flex; flex-wrap: wrap; gap: 18px; font-size: .95rem; }
+.hint { color: var(--muted); font-size: .9rem; text-align: center; }
+
+.btn {
+  font: inherit;
+  border: 1px solid #d9d4cb;
+  background: #fff;
+  padding: 9px 16px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+.btn.primary { background: var(--ko); color: #fff; border-color: var(--ko); }
+.btn:hover:not(:disabled) { filter: brightness(.95); }
+
+/* ---- 카드 / 卡片 ---- */
+.board {
+  display: grid;
+  grid-template-columns: repeat(var(--cols, 4), 1fr);
+  gap: 10px;
+}
+.card {
+  aspect-ratio: 4 / 3;
+  border: none;
+  background: transparent;
+  perspective: 800px;
+  padding: 0;
+  cursor: pointer;
+}
+.card-inner {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 100%;
+  transition: transform .4s;
+  transform-style: preserve-3d;
+}
+.card.flipped .card-inner, .card.done .card-inner { transform: rotateY(180deg); }
+.face {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-radius: 12px;
+  backface-visibility: hidden;
+  font-size: 1.25rem;
+  font-weight: 700;
+}
+.face.back {
+  background: linear-gradient(135deg, var(--ko), var(--zh));
+  color: #fff;
+  font-size: 2rem;
+}
+.face.front { background: #fff; transform: rotateY(180deg); border: 2px solid #e6e1d8; }
+.face.front small { font-size: .7rem; font-weight: 400; color: var(--muted); margin-bottom: 4px; }
+.face.front.ko { color: var(--ko); }
+.face.front.zh { color: var(--zh); }
+.card.done .face.front { border-color: var(--ok); background: #eefaf2; }
+.card.wrong .face.front { border-color: var(--ng); }
+
+/* ---- 퀴즈 / 测验 ---- */
+.quiz-box { text-align: center; min-height: 260px; }
+.placeholder { color: var(--muted); }
+.progress { height: 6px; background: #eee; border-radius: 99px; overflow: hidden; }
+.progress div { height: 100%; background: var(--ko); transition: width .3s; }
+.q-meta { color: var(--muted); font-size: .9rem; }
+.q-ask { font-size: 1.05rem; }
+.q-word { font-size: 2.4rem; font-weight: 800; margin: 10px 0 18px; }
+.options { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; max-width: 480px; margin: 0 auto; }
+.option { font-size: 1.15rem; padding: 14px; }
+.option.right { background: #eefaf2; border-color: var(--ok); color: var(--ok); }
+.option.bad { background: #fdeeee; border-color: var(--ng); color: var(--ng); }
+.feedback { min-height: 1.4em; font-weight: 600; }
+.feedback.ok { color: var(--ok); }
+.feedback.ng { color: var(--ng); }
+.wrong-list { text-align: left; display: inline-block; }
+
+/* ---- 단어장 / 单词表 ---- */
+.word-table { width: 100%; border-collapse: collapse; background: #fff; border-radius: var(--radius); overflow: hidden; }
+.word-table th, .word-table td { padding: 10px 12px; border-bottom: 1px solid #eee; text-align: left; }
+.word-table th { background: #faf8f4; font-size: .9rem; color: var(--muted); }
+.word-table td:nth-child(2) { color: var(--ko); font-weight: 600; }
+.word-table td:nth-child(3) { color: var(--zh); font-weight: 600; }
+.error { color: var(--ng); text-align: center; }
+
+/* ---- 모달 / 弹窗 ---- */
+.modal {
+  position: fixed; inset: 0;
+  background: rgba(0,0,0,.4);
+  display: flex; align-items: center; justify-content: center;
+  padding: 16px;
+}
+.modal-card { background: #fff; border-radius: var(--radius); padding: 28px; max-width: 380px; text-align: center; }
+.hidden { display: none !important; }
+
+footer { text-align: center; color: var(--muted); font-size: .8rem; padding: 24px; }
+
+@media (max-width: 600px) {
+  .board { grid-template-columns: repeat(3, 1fr); }
+  .face { font-size: 1rem; }
+  .q-word { font-size: 1.9rem; }
+}

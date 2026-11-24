@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>한중 단어 카드 게임 / 韩中单词卡片游戏</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="top">
+    <h1>
+      <span class="ko">한중 단어 카드 게임</span>
+      <span class="zh">韩中单词卡片游戏</span>
+    </h1>
+    <p class="subtitle">한국어와 중국어 단어를 재미있게 외워요 / 轻松有趣地记住韩语和中文单词</p>
+    <nav class="tabs" role="tablist">
+      <button class="tab active" data-view="match">🃏 카드 짝 맞추기 / 翻牌配对</button>
+      <button class="tab" data-view="quiz">📝 단어 퀴즈 / 单词测验</button>
+      <button class="tab" data-view="list">📖 단어장 / 单词表</button>
+    </nav>
+  </header>
+
+  <main>
+    <!-- ===== 카드 짝 맞추기 / 翻牌配对 ===== -->
+    <section id="view-match" class="view active">
+      <div class="panel controls">
+        <label>
+          난이도 / 难度
+          <select id="match-level">
+            <option value="6">쉬움 / 简单 (6쌍 / 6对)</option>
+            <option value="8" selected>보통 / 普通 (8쌍 / 8对)</option>
+            <option value="10">어려움 / 困难 (10쌍 / 10对)</option>
+          </select>
+        </label>
+        <button id="match-start" class="btn primary">새 게임 / 新游戏</button>
+      </div>
+      <div class="panel stats">
+        <span>⏱ 시간 / 时间: <b id="match-time">0</b>s</span>
+        <span>🔁 시도 / 尝试: <b id="match-moves">0</b></span>
+        <span>✅ 맞춘 쌍 / 已配对: <b id="match-pairs">0</b>/<b id="match-total">0</b></span>
+        <span>🏆 최고 기록 / 最佳纪录: <b id="match-best">-</b></span>
+      </div>
+      <p class="hint">같은 뜻의 한국어 카드와 중국어 카드를 찾아 뒤집으세요. / 翻开意思相同的韩语卡和中文卡。</p>
+      <div id="board" class="board"></div>
+    </section>
+
+    <!-- ===== 단어 퀴즈 / 单词测验 ===== -->
+    <section id="view-quiz" class="view">
+      <div class="panel controls">
+        <label>
+          문제 방향 / 题目方向
+          <select id="quiz-dir">
+            <option value="ko2zh">한국어 → 중국어 / 韩语 → 中文</option>
+            <option value="zh2ko">중국어 → 한국어 / 中文 → 韩语</option>
+          </select>
+        </label>
+        <button id="quiz-start" class="btn primary">퀴즈 시작 / 开始测验</button>
+      </div>
+      <div id="quiz-box" class="panel quiz-box">
+        <p class="placeholder">‘퀴즈 시작’ 버튼을 누르세요. / 请点击“开始测验”按钮。</p>
+      </div>
+    </section>
+
+    <!-- ===== 단어장 / 单词表 ===== -->
+    <section id="view-list" class="view">
+      <div class="panel controls">
+        <label class="grow">
+          검색 / 搜索
+          <input id="search" type="text" placeholder="한국어 또는 중국어 입력 / 输入韩语或中文" />
+        </label>
+      </div>
+      <table class="word-table">
+        <thead>
+          <tr><th>#</th><th>한국어 / 韩语</th><th>중국어 / 中文</th><th>병음 / 拼音</th></tr>
+        </thead>
+        <tbody id="word-tbody"></tbody>
+      </table>
+      <p id="no-result" class="error hidden">검색 결과가 없습니다. / 没有找到搜索结果。</p>
+    </section>
+  </main>
+
+  <!-- 결과 창 / 结果弹窗 -->
+  <div id="modal" class="modal hidden" role="dialog" aria-modal="true">
+    <div class="modal-card">
+      <h2 id="modal-title"></h2>
+      <p id="modal-body"></p>
+      <button id="modal-close" class="btn primary">확인 / 确定</button>
+    </div>
+  </div>
+
+  <footer>© 2026 · 한중 단어 카드 게임 / 韩中单词卡片游戏 · Vibe Coding Project</footer>
+
+  <script src="words.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
